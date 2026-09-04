@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sunrise Dental - Register</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #e0f7fa; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .reg-box { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 400px; text-align: center; }
+        input, button { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { background: #28a745; color: white; border: none; cursor: pointer; font-weight: bold; font-size: 16px; margin-top: 15px; }
+        button:hover { background: #218838; }
+        .file-label { display: block; text-align: left; font-size: 14px; margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="reg-box">
+        <h2>Register New Patient</h2>
+        <form action="RegisterServlet" method="POST" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="text" name="address" placeholder="Home Address" required>
+            <input type="text" name="phone" placeholder="Contact Number" required>
+            <input type="text" name="username" placeholder="Choose a Username" required>
+            <input type="password" name="password" placeholder="Choose a Password" required>
+            
+            <label class="file-label">Upload Profile Photo:</label>
+            <input type="file" name="photo" accept="image/*" required>
+            
+            <button type="submit">Register Now</button>
+        </form>
+        <p><a href="index.html" style="color: #007bff; text-decoration: none;">Back to Login</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sunrise Dental - Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; padding: 20px; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h2 { color: #333; display: flex; justify-content: space-between; }
+        input, select, button { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { background: #007bff; color: white; border: none; cursor: pointer; font-weight: bold; }
+        .help-box { background: #e9ecef; padding: 15px; border-radius: 5px; margin-top: 20px; font-size: 14px; }
+        .logout { color: red; text-decoration: none; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Book Appointment <a href="index.html" class="logout">Logout</a></h2>
+        
+        <form action="AppointmentServlet" method="POST">
+            <label>Select Dentist:</label>
+            <select name="dentist" required>
+                <option value="Dr. Kamal Perera">Dr. Kamal Perera</option>
+                <option value="Dr. Nimali Silva">Dr. Nimali Silva</option>
+                <option value="Dr. Samantha">Dr. Samantha</option>
+            </select>
+            
+            <label>Treatment Type:</label>
+            <select name="treatment" required>
+                <option value="Teeth Cleaning">Teeth Cleaning</option>
+                <option value="Root Canal">Root Canal</option>
+                <option value="Tooth Extraction">Tooth Extraction</option>
+            </select>
+            
+            <label>Select Date:</label>
+            <input type="date" name="date" required>
+            
+            <label>Select Time:</label>
+            <input type="time" name="time" required>
+            
+            <button type="submit">Confirm Appointment</button>
+        </form>
+
+        <div class="help-box">
+            <h4>System Help & Instructions:</h4>
+            <ul>
+                <li><strong>Booking:</strong> Select the dentist, treatment, date, and time, then click 'Confirm'.</li>
+                <li><strong>SMS Alert:</strong> Once confirmed, an automated SMS will be triggered (Mock Feature).</li>
+                <li><strong>Logout:</strong> Always click the 'Logout' button at the top right to exit safely.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
