@@ -30,9 +30,10 @@ public class EditDoctorServlet extends HttpServlet {
                 pst.setString(4, id);
                 pst.executeUpdate();
             }
-            response.sendRedirect("admin.jsp");
+            response.sendRedirect("admin.jsp?success=Doctor+Updated+Successfully");
         } catch (Exception e) {
-            e.printStackTrace();
-        }
+    e.printStackTrace();
+    response.sendRedirect("admin.jsp?error=Operation+Failed");
+}
     }
 }

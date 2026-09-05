@@ -12,24 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "DeleteDoctorServlet", urlPatterns = {"/DeleteDoctorServlet"})
 public class DeleteDoctorServlet extends HttpServlet {
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
-        
         try {
             Connection con = DBConnection.getConnection();
             if (con != null && id != null) {
-                // Doctor wa database eken delete kirima
                 PreparedStatement pst = con.prepareStatement("DELETE FROM doctors WHERE id=?");
                 pst.setString(1, id);
                 pst.executeUpdate();
             }
-            // Delete wunaata passe ayeth admin dashboard ekatama yanawa
-            response.sendRedirect("admin.jsp");
-            
+            response.sendRedirect("admin.jsp?success=Doctor+Deleted+Successfully");
         } catch (Exception e) {
             e.printStackTrace();
+            response.sendRedirect("admin.jsp?error=Delete+Failed");
         }
     }
 }

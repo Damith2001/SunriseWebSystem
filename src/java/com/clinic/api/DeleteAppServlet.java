@@ -22,9 +22,10 @@ public class DeleteAppServlet extends HttpServlet {
                 pst.setString(1, appNo);
                 pst.executeUpdate();
             }
-            response.sendRedirect("admin.jsp"); // Delete kalata passe ayeth dashboard ekata yanawa
+            response.sendRedirect("admin.jsp?success=Appointment+Deleted+Successfully");
         } catch (Exception e) {
             e.printStackTrace();
+            response.sendRedirect("admin.jsp?error=Delete+Failed");
         }
     }
 }

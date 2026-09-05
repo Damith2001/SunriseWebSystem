@@ -39,9 +39,10 @@ public class AdminAddAppServlet extends HttpServlet {
                 pst.setString(7, appointmentTime);
                 pst.executeUpdate();
             }
-            response.sendRedirect("admin.jsp");
+          response.sendRedirect("admin.jsp?success=Appointment+Added+Successfully");
         } catch (Exception e) {
-            e.printStackTrace();
-        }
+    e.printStackTrace();
+    response.sendRedirect("admin.jsp?error=Operation+Failed");
+}
     }
 }

@@ -14,17 +14,18 @@ import javax.servlet.http.HttpServletResponse;
 public class DeletePatientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("id");
+        String id = request.getParameter("id");
         try {
             Connection con = DBConnection.getConnection();
-            if (con != null && username != null) {
+            if (con != null && id != null) {
                 PreparedStatement pst = con.prepareStatement("DELETE FROM patients WHERE username=?");
-                pst.setString(1, username);
+                pst.setString(1, id);
                 pst.executeUpdate();
             }
-            response.sendRedirect("admin.jsp");
+            response.sendRedirect("admin.jsp?success=Patient+Deleted+Successfully");
         } catch (Exception e) {
             e.printStackTrace();
+            response.sendRedirect("admin.jsp?error=Delete+Failed");
         }
     }
 }

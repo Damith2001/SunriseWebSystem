@@ -1,26 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Sunrise Dental - Login</title>
+    <meta charset="UTF-8">
+    <title>Home | Sunrise Dental</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #e0f7fa; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .login-box { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 320px; text-align: center; }
-        input, button { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        button { background: #007bff; color: white; border: none; cursor: pointer; font-weight: bold; font-size: 16px; }
-        button:hover { background: #0056b3; }
-        a { text-decoration: none; color: #007bff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { display: flex; flex-direction: column; min-height: 100vh; background-color: #f4f7f6; }
+        header { background: #004085; color: white; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        header nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; transition: 0.3s; }
+        header nav a:hover { color: #ffc107; }
+        .btn-nav-login { background: #ffc107; color: #004085; padding: 8px 15px; border-radius: 5px; }
+        .btn-nav-login:hover { background: #e0a800; color: black; }
+        
+        .hero {
+            flex: 1;
+            background: linear-gradient(rgba(0, 40, 90, 0.7), rgba(0, 40, 90, 0.7)), url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex; justify-content: center; align-items: center; text-align: center; padding: 0 10%;
+        }
+        .hero-text { color: white; max-width: 800px; }
+        .hero-text h2 { font-size: 55px; margin-bottom: 20px; }
+        .hero-text .highlight { color: #ffc107; }
+        .hero-text p { font-size: 20px; line-height: 1.6; margin-bottom: 35px; color: #e9ecef; }
+        .btn-main { background: #28a745; color: white; padding: 15px 30px; text-decoration: none; font-size: 20px; font-weight: bold; border-radius: 6px; }
+        .btn-main:hover { background: #218838; }
+        footer { background: #343a40; color: white; text-align: center; padding: 20px 0; }
     </style>
 </head>
 <body>
-    <div class="login-box">
-        <h2>Sunrise Dental Clinic</h2>
-        <p>Staff & Patient Login</p>
-        <form action="LoginServlet" method="POST">
-            <input type="text" name="username" placeholder="Enter Username" required>
-            <input type="password" name="password" placeholder="Enter Password" required>
-            <button type="submit">Login to System</button>
-        </form>
-        <p>New Patient? <a href="register.html">Register Here</a></p>
+    <header>
+        <h1>Sunrise Dental</h1>
+        <nav>
+            <a href="index.html" style="color: #ffc107;">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="login.html" class="btn-nav-login">Login</a>
+        </nav>
+    </header>
+    <div class="hero">
+        <div class="hero-text">
+            <h2>Your Smile is Our <br><span class="highlight">Top Priority</span></h2>
+            <p>Welcome to Sunrise Dental Clinic. We provide advanced dental care with a comfortable and relaxing environment. Book your appointment today!</p>
+            <a href="login.html" class="btn-main">Login to Portal</a>
+        </div>
     </div>
+    <footer><p>&copy; 2026 Sunrise Dental Clinic. All Rights Reserved.</p></footer>
 </body>
 </html>

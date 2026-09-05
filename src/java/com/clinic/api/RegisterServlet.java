@@ -1,4 +1,5 @@
 package com.clinic.api;
+
 import com.clinic.dao.DBConnection;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +17,6 @@ import javax.servlet.http.Part;
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         try {
             String name = request.getParameter("name");
             String address = request.getParameter("address");
@@ -25,34 +25,35 @@ public class RegisterServlet extends HttpServlet {
             String password = request.getParameter("password");
 
             Part part = request.getPart("photo");
-            String fileName = part.getSubmittedFileName();
+            String fileName = "default.png";
             
-            String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
-            File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) uploadDir.mkdir();
+            if (part != null && part.getSize() > 0) {
+                fileName = part.getSubmittedFileName();
+                String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
+                File uploadDir = new File(uploadPath);
+                if (!uploadDir.exists()) uploadDir.mkdir();
+                part.write(uploadPath + File.separator + fileName);
+            }
 
-            part.write(uploadPath + File.separator + fileName);
-            String photoPath = "uploads/" + fileName;
-
-            // Connection ganeema
             Connection con = DBConnection.getConnection();
+            if (con != null) {
+                String query = "INSERT INTO patients (name, address, phone, username, password, profile_pic) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement pst = con.prepareStatement(query);
+                pst.setString(1, name);
+                pst.setString(2, address);
+                pst.setString(3, phone);
+                pst.setString(4, username);
+                pst.setString(5, password);
+                pst.setString(6, fileName);
+                pst.executeUpdate();
+            }
 
-            String query = "INSERT INTO patients (name, address, phone, username, password, photo_path) VALUES (?, ?, ?, ?, ?, ?)";
-            PreparedStatement pst = con.prepareStatement(query);
-            pst.setString(1, name);
-            pst.setString(2, address);
-            pst.setString(3, phone);
-            pst.setString(4, username);
-            pst.setString(5, password);
-            pst.setString(6, photoPath);
-            pst.executeUpdate();
-
-            response.sendRedirect("index.html");
+            // Register Successfully pop-up ekata redirect kirima
+            response.sendRedirect("index.html?success=Registration+Successful.+Please+Login");
 
         } catch (Exception e) {
-            // Meken connection eka fail wenna hethuwa screen ekema pennawi
-            response.getWriter().println("<h3 style='color:red;'>CONNECTION ERROR: " + e.getMessage() + "</h3>");
             e.printStackTrace();
+            response.sendRedirect("register.html?error=Registration+Failed");
         }
     }
 }

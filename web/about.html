@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us | Sunrise Dental</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { display: flex; flex-direction: column; min-height: 100vh; background-color: #f4f7f6; }
+        header { background: #004085; color: white; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        header nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; transition: 0.3s; }
+        header nav a:hover { color: #ffc107; }
+        .btn-nav-login { background: #ffc107; color: #004085; padding: 8px 15px; border-radius: 5px; }
+        
+        section { flex: 1; padding: 60px 10%; text-align: center; }
+        h2 { color: #004085; font-size: 36px; margin-bottom: 20px; text-transform: uppercase; }
+        .section-desc { font-size: 18px; color: #666; max-width: 800px; margin: 0 auto 40px auto; line-height: 1.6; }
+        .card-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .card { background: white; padding: 40px 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); width: 320px; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.12); }
+        .card h4 { color: #004085; margin-bottom: 15px; font-size: 22px; }
+        .card p { color: #555; font-size: 16px; line-height: 1.5; }
+        
+        footer { background: #343a40; color: white; text-align: center; padding: 20px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sunrise Dental</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html" style="color: #ffc107;">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="login.html" class="btn-nav-login">Login</a>
+        </nav>
+    </header>
+    <section>
+        <h2>About Sunrise Dental</h2>
+        <p class="section-desc">At Sunrise Dental Clinic, we are committed to providing exceptional dental care to patients of all ages. Our state-of-the-art facility ensures that you receive the safest and most effective treatments available today.</p>
+        <div class="card-container">
+            <div class="card">
+                <h4>Expert Dentists</h4>
+                <p>Our team consists of highly qualified and experienced dental professionals dedicated to your oral health.</p>
+            </div>
+            <div class="card">
+                <h4>Modern Equipment</h4>
+                <p>We use the latest technologies and advanced tools to make your treatments painless and highly effective.</p>
+            </div>
+            <div class="card">
+                <h4>24/7 Support</h4>
+                <p>Our emergency dental care team is always ready to assist you in case of any urgent dental issues.</p>
+            </div>
+        </div>
+    </section>
+    <footer><p>&copy; 2026 Sunrise Dental Clinic. All Rights Reserved.</p></footer>
+</body>
+</html>

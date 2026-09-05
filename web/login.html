@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Sunrise Dental</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { display: flex; flex-direction: column; min-height: 100vh; background-color: #f4f7f6; }
+        header { background: #004085; color: white; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        header nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; transition: 0.3s; }
+        header nav a:hover { color: #ffc107; }
+        .btn-nav-login { background: #ffc107; color: #004085; padding: 8px 15px; border-radius: 5px; }
+        
+        .login-wrapper {
+            flex: 1;
+            background: linear-gradient(rgba(0, 40, 90, 0.7), rgba(0, 40, 90, 0.7)), url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .login-box { background: white; padding: 40px; border-radius: 12px; width: 380px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); text-align: center; }
+        .login-box h3 { color: #004085; margin-bottom: 10px; font-size: 26px; }
+        .login-box .subtitle { color: #666; margin-bottom: 20px; border-bottom: 2px solid #f4f4f4; padding-bottom: 15px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; outline: none; }
+        .input-group input:focus { border-color: #004085; }
+        .btn-login { width: 100%; padding: 14px; background: #007bff; color: white; border: none; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; }
+        .btn-login:hover { background: #0056b3; }
+        .register-link { margin-top: 15px; font-size: 15px; }
+        .register-link a { color: #007bff; text-decoration: none; font-weight: bold; }
+        
+        footer { background: #343a40; color: white; text-align: center; padding: 20px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sunrise Dental</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="login.html" class="btn-nav-login" style="background: #e0a800; color: black;">Login</a>
+        </nav>
+    </header>
+    <div class="login-wrapper">
+        <div class="login-box">
+            <h3>Login to Portal</h3>
+            <p class="subtitle">Staff & Patient Login</p>
+            <form action="LoginServlet" method="POST">
+                <div class="input-group">
+                    <input type="text" name="username" placeholder="Enter Username" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" placeholder="Enter Password" required>
+                </div>
+                <button type="submit" class="btn-login">Login to System</button>
+            </form>
+            <p class="register-link">New Patient? <a href="register.html">Register Here</a></p>
+        </div>
+    </div>
+    <footer><p>&copy; 2026 Sunrise Dental Clinic. All Rights Reserved.</p></footer>
+
+    <!-- Error/Success Alerts Script -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const successMsg = urlParams.get('success');
+        const errorMsg = urlParams.get('error');
+        const appNo = urlParams.get('appNo');
+
+        if (successMsg) {
+            let msg = successMsg.replace(/\+/g, ' ');
+            if (appNo) msg += " (Appointment No: " + appNo + ")";
+            alert(msg); 
+        } else if (errorMsg) {
+            let err = errorMsg.replace(/\+/g, ' ');
+            if (err === 'booked') {
+                alert("Error: This doctor is already booked for the selected date and time!");
+            } else {
+                alert("Error: " + err);
+            }
+        }
+    </script>
+</body>
+</html>

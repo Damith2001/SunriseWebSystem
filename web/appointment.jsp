@@ -26,7 +26,6 @@
             <label>Contact Number:</label>
             <input type="text" name="contact_number" required>
 
-            <!-- Doctor select karaddi auto update wenna onchange eka dala thiyenawa -->
             <label>Select Dentist:</label>
             <select name="dentist" id="dentistDropdown" onchange="updateTreatment()" required>
                 <option value="" data-specialization="">-- Select a Doctor --</option>
@@ -39,7 +38,6 @@
                             String docName = rs.getString("doctor_name");
                             String specialization = rs.getString("specialization");
                 %>
-                <!-- data-specialization kiyana attribute eke doctorge specialization eka hangala thiyenawa -->
                 <option value="<%= docName %>" data-specialization="<%= specialization %>"><%= docName %> - <%= specialization %></option>
                 <%
                         }
@@ -47,43 +45,70 @@
                 %>
             </select>
 
-            <!-- Auto fill wena Treatment box eka (Readonly karala thiyenne edit karanna beri wenna) -->
             <label>Treatment Type:</label>
             <input type="text" name="treatment" id="treatmentInput" class="readonly-input" readonly required placeholder="Auto-filled based on Dentist">
-
+            
             <label>Select Date:</label>
             <input type="date" name="date" required>
 
             <label>Select Time:</label>
             <input type="time" name="time" required>
+            
+            <label>Email Address:</label>
+            <input type="email" name="email" required placeholder="Enter email for confirmation">
 
             <button type="submit">Confirm Appointment</button>
-            <a href="dashboard.html" class="btn-cancel">Back to Dashboard</a>
+            <a href="dashboard.jsp" class="btn-cancel">Back to Dashboard</a>
         </form>
 
         <div id="successMsg" style="text-align:center; margin-top:20px;"></div>
     </div>
 
     <script>
-        // Doctor wa select karama auto treatment eka fill karana JavaScript function eka
         function updateTreatment() {
             var dropdown = document.getElementById("dentistDropdown");
             var selectedOption = dropdown.options[dropdown.selectedIndex];
             var specialization = selectedOption.getAttribute("data-specialization");
-            
-            // Eka treatment box ekata danawa
             document.getElementById("treatmentInput").value = specialization || "";
         }
 
-        // Appointment eka success unama pennana message eka
         const urlParams = new URLSearchParams(window.location.search);
         const appNo = urlParams.get('appNo');
+        const error = urlParams.get('error');
+
+        // Success message eka
         if (appNo) {
             document.getElementById('successMsg').innerHTML = 
                 "<div style='padding:15px; background-color:#d4edda; border:1px solid #c3e6cb; border-radius:5px;'>" +
                 "<h3 style='color:#155724; margin:0;'>Appointment Successful!</h3>" + 
                 "<h4 style='color:#004085; margin-top:10px;'>Appointment No: " + appNo + "</h4></div>";
+        } 
+        // Error message eka (E welawa booked nam)
+        else if (error === 'booked') {
+            document.getElementById('successMsg').innerHTML = 
+                "<div style='padding:15px; background-color:#f8d7da; border:1px solid #f5c6cb; border-radius:5px;'>" +
+                "<h3 style='color:#721c24; margin:0;'>Time Slot Not Available!</h3>" + 
+                "<p style='color:#721c24; margin-top:10px; font-weight:bold;'>This doctor is already booked for the selected date and time. Please choose a different time.</p></div>";
         }
     </script>
+    <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const successMsg = urlParams.get('success');
+    const errorMsg = urlParams.get('error');
+    const appNo = urlParams.get('appNo');
+
+    if (successMsg) {
+        let msg = successMsg.replace(/\+/g, ' ');
+        if (appNo) msg += " (Appointment No: " + appNo + ")";
+        alert(msg); // Pop-up message
+    } else if (errorMsg) {
+        let err = errorMsg.replace(/\+/g, ' ');
+        if (err === 'booked') {
+            alert("Error: This doctor is already booked for the selected date and time!");
+        } else {
+            alert("Error: " + err);
+        }
+    }
+</script>
 </body>
 </html>
