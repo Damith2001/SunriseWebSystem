@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Patient - Sunrise Dental</title>
+    <style>
+        body { font-family: Arial; margin: 50px; background: #f4f4f4; }
+        .form-box { background: white; padding: 25px; width: 400px; border-radius: 8px; box-shadow: 0px 0px 10px #ccc; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        label { font-weight: bold; color: #333; }
+        button { padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-back { background: #6c757d; color: white; text-decoration: none; padding: 10px 15px; border-radius: 4px; margin-left: 10px; display: inline-block; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h2 style="color: #004085; margin-top: 0;">Add New Patient</h2>
+        <form action="AddPatientServlet" method="POST">
+            <label>Patient Name:</label>
+            <input type="text" name="name" required>
+            
+            <label>Phone Number:</label>
+            <input type="text" name="phone" required>
+            
+            <label>Address:</label>
+            <input type="text" name="address" required>
+            
+            <label>Username:</label>
+            <input type="text" name="username" required>
+            
+            <label>Password:</label>
+            <input type="password" name="password" required>
+            <br><br>
+            <button type="submit">Save Patient</button>
+            <a href="admin.jsp" class="btn-back">Back to Admin</a>
+        </form>
+    </div>
+</body>
+</html>

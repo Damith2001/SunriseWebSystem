@@ -11,32 +11,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "AppointmentServlet", urlPatterns = {"/AppointmentServlet"})
-public class AppointmentServlet extends HttpServlet {
-
+@WebServlet(name = "AdminAddAppServlet", urlPatterns = {"/AdminAddAppServlet"})
+public class AdminAddAppServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+        String patientName = request.getParameter("name");
+        String contactNumber = request.getParameter("contact_number");
+        String dentist = request.getParameter("dentist");
+        String treatment = request.getParameter("treatment");
+        String appointmentDate = request.getParameter("date");
+        String appointmentTime = request.getParameter("time");
+
+        Random rnd = new Random();
+        String appointmentNumber = "APT-" + (1000 + rnd.nextInt(9000));
+
         try {
-            // Form eken details ganeema
-            String patientName = request.getParameter("name");
-            String contactNumber = request.getParameter("contact_number");
-            String dentist = request.getParameter("dentist");
-            String treatment = request.getParameter("treatment");
-            String appointmentDate = request.getParameter("date");
-            String appointmentTime = request.getParameter("time");
-
-            // Appointment Number eka Auto Generate kirima (Ex: APT-5842)
-            Random rnd = new Random();
-            String appointmentNumber = "APT-" + (1000 + rnd.nextInt(9000));
-
             Connection con = DBConnection.getConnection();
-
             if (con != null) {
-                // Database ekata data save kirima
                 String query = "INSERT INTO appointments (appointment_number, patient_name, contact_number, dentist, treatment, app_date, app_time) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement pst = con.prepareStatement(query);
-                
                 pst.setString(1, appointmentNumber);
                 pst.setString(2, patientName);
                 pst.setString(3, contactNumber);
@@ -44,19 +37,11 @@ public class AppointmentServlet extends HttpServlet {
                 pst.setString(5, treatment);
                 pst.setString(6, appointmentDate);
                 pst.setString(7, appointmentTime);
-                
                 pst.executeUpdate();
-
-                // Appointment eka hari unata passe appointment.jsp pituwatama Appointment Number eka yawima
-                response.sendRedirect("appointment.jsp?appNo=" + appointmentNumber);
-                
-            } else {
-                response.getWriter().println("Database Connection Failed!");
             }
-
+            response.sendRedirect("admin.jsp");
         } catch (Exception e) {
             e.printStackTrace();
-            response.getWriter().println("ERROR: " + e.getMessage());
         }
     }
 }

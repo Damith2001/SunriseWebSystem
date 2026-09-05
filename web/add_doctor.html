@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Doctor - Sunrise Dental</title>
+    <style>
+        body { font-family: Arial; margin: 50px; background: #f4f4f4; }
+        .form-box { background: white; padding: 25px; width: 400px; border-radius: 8px; box-shadow: 0px 0px 10px #ccc; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        label { font-weight: bold; color: #333; }
+        button { padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-back { background: #6c757d; color: white; text-decoration: none; padding: 10px 15px; border-radius: 4px; margin-left: 10px; display: inline-block; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h2 style="color: #004085; margin-top: 0;">Add New Doctor</h2>
+        <form action="AddDoctorServlet" method="POST">
+            <label>Doctor Name:</label>
+            <input type="text" name="doctor_name" placeholder="Dr. Kamal Perera" required>
+            
+            <label>Specialization:</label>
+            <input type="text" name="specialization" placeholder="Orthodontist / Dentist" required>
+            
+            <label>Phone Number:</label>
+            <input type="text" name="phone" placeholder="0712345678" required>
+            <br><br>
+            <button type="submit">Save Doctor</button>
+            <a href="admin.jsp" class="btn-back">Back to Admin</a>
+        </form>
+    </div>
+</body>
+</html>
